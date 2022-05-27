@@ -2,7 +2,7 @@
 // datatype:
 // 1-numbers 
 // ranges from
- byte a = 0 to 255;
+ byte a = 23; 
  short b = 3534;
  int c = 2523523;
  long d = 23232525235;
