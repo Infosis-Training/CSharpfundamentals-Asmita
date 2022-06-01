@@ -1,6 +1,7 @@
 ﻿using Collect;
 // using OOP;
 using System;
+using Patterns;
 class EntryPoint
 {
     public static void Main()
@@ -20,11 +21,17 @@ class EntryPoint
         // Collection coll = new();
         // coll.LearnArrays();
 
-        Basics strr = new();
-        strr.LearnLoops();
+        // Basics strr = new();
+        // strr.LearnLoops();
+        
+        PatternGen pg = new();
+        pg.PatternGenerate();
+        pg.PatternGenerate1();
+        pg.PatternGenerate2();
     }
 
 }
 
-
-
+internal class PatternGenerate
+{
+}
