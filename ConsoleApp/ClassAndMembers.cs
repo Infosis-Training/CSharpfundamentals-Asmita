@@ -1,7 +1,10 @@
 
 // 1-classes and objects
 using System;
-// defining class
+
+namespace OOP;
+
+    // defining class
 class Person
 {
     // members: fields,methods
@@ -13,21 +16,22 @@ class Person
     public string gender;
 
     //methods
-    public void SpeakLanguage() 
+    public void SpeakLanguage()
     {
         Console.WriteLine(personName + " is speaking");
     }
-    
+
     public string GetPersonDetails()
     {
 
         string nameDesc = "I am " + personName;
-        string heightDesc = "My height is " + heightInFt+ "Ft";
+        string heightDesc = "My height is " + heightInFt + "Ft";
         string ageDesc = "I am " + gender;
-        string personDesc = nameDesc + "\n" + heightDesc + "\n"+ ageDesc;
+        string personDesc = nameDesc + "\n" + heightDesc + "\n" + ageDesc;
         return personDesc;
 
     }
 
 
 }
+

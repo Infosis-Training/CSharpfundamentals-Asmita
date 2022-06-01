@@ -1,7 +1,7 @@
-﻿
+﻿using OOP;
 class EntryPoint
 {
-    public static void Main()
+    public static void Main1()
     {
         // creating (instantiating) objects/instances
         Person p1 = new();
