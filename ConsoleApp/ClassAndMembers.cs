@@ -31,7 +31,5 @@ class Person
         return personDesc;
 
     }
-
-
 }
 

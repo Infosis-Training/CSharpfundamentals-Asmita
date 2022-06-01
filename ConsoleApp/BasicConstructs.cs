@@ -1,13 +1,13 @@
-
+using System;
 class Basics
 {
-    public static void Main()
-    {
-        LearnLoops();
-        // LearnConditionals(55);
-        // LearnConditionals(80);
-    }
-    static void LearnConditionals(byte x)
+    // public static void Main1()
+    // {
+    //     LearnLoops();
+    //     // LearnConditionals(55);
+    //     // LearnConditionals(80);
+    // }
+    void LearnConditionals(byte x)
     {
         if (x < 50)
         {
@@ -42,17 +42,25 @@ class Basics
             break;
         }
     }
-    static void LearnLoops()
+    internal void LearnLoops()
     {
-        for (byte i=0; i<5; i++)
+        // for (byte i=1; i<6; i++)
+        // {
+        //     Console.WriteLine(i + ".NET Training");
+        // }
+
+        string[] names = {"Rita","Sita","Harka","Anish"};
+        foreach(string name in names)
         {
-            Console.WriteLine(i + ".NET Training");
+            Console.WriteLine(name);
         }
-        byte j=0;
-        while(j<5)
-        {
-            Console.WriteLine(j + ".NET Training");
-            j++;
-        }
+
+
+        // byte j=1;
+        // while(j<6)
+        // {
+        //     Console.WriteLine(j + ".NET Training");
+        //     j++;
+        // }
     }
 }
