@@ -22,4 +22,6 @@
 
 //     // 4-nullable type
 //     int? value = null; 
+// unsigned integer(uint) takes only positive values
+// normal integer takes both pos and neg values
 // }

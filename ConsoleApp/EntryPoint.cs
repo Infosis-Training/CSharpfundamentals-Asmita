@@ -24,14 +24,23 @@ class EntryPoint
         // Basics strr = new();
         // strr.LearnLoops();
         
-        PatternGen pg = new();
-        pg.PatternGenerate();
-        pg.PatternGenerate1();
-        pg.PatternGenerate2();
+        // PatternGen pg = new();
+        // pg.PatternGenerate();
+        // pg.PatternGenerate1();
+        // pg.PatternGenerate2();
+
+        Methods m = new();
+        // m.Print();
+        // m.Print("Friend");
+        // var d = m.Print("Asmita",20);
+        // Console.WriteLine(d);
+        // var g = m.Greet("David","Dr.");
+        // Console.WriteLine(g);
+        // Console.WriteLine(m.Greet("Rama"));
+        // Console.WriteLine(m.Greet1("Rama"));
+        m.FindIfEvenOrOdd(7);
+        Console.WriteLine(m.IsEven(8));
     }
 
 }
 
-internal class PatternGenerate
-{
-}
