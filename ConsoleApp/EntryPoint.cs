@@ -2,6 +2,7 @@
 // using OOP;
 using System;
 using Patterns;
+// using MethodAssg;
 class EntryPoint
 {
     public static void Main()
@@ -29,7 +30,7 @@ class EntryPoint
         // pg.PatternGenerate1();
         // pg.PatternGenerate2();
 
-        Methods m = new();
+        // Methods m = new();
         // m.Print();
         // m.Print("Friend");
         // var d = m.Print("Asmita",20);
@@ -38,8 +39,14 @@ class EntryPoint
         // Console.WriteLine(g);
         // Console.WriteLine(m.Greet("Rama"));
         // Console.WriteLine(m.Greet1("Rama"));
-        m.FindIfEvenOrOdd(7);
-        Console.WriteLine(m.IsEven(8));
+        // m.FindIfEvenOrOdd(7);
+        // Console.WriteLine(m.IsEven(8));
+        
+        Assignment ma = new();
+        Console.WriteLine( ma.FindGreatestNumber(20,35,50));
+        Console.WriteLine(ma.ProductOfNumbers(1.5f,3.75f));
+        // Console.WriteLine(ma.DisplayFirstLetter("Asmita Gautam"));
+        ma.DisplayFirstLetter("Asmita Gautam");
     }
 
 }
