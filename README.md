@@ -1,7 +1,7 @@
 # CSharpfundamentals-Asmita
 
 <!-- assignment -->
-<!-- 1. Print following patterns on console: -->
+<!-- 1. Print following patterns on console:
 #
 ##
 ###
@@ -19,7 +19,7 @@
    ###
   #####
  #######
-#########
+######### -->
 
 
 
