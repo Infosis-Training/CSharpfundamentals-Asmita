@@ -42,6 +42,6 @@ class Assignment
     public string GetInitials(string firstName, string secondName)
     {
         string initials = $"{firstName[0]}{secondName[0]}";
-        return initials.ToUpper(); 
+        return $"The initials of name is {initials.ToUpper()}"; 
     }
 }
