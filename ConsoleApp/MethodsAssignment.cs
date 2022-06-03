@@ -1,6 +1,7 @@
 
 // namespace MethodAssg();
 using System;
+// using System.Linq;
 class Assignment
 {
     public string FindGreatestNumber(byte x, byte y, byte z )
@@ -25,7 +26,7 @@ class Assignment
             return $"{z} is greater than {x} and {y}";
         }
     }
-    public string ProductOfNumbers(float x, float y, float z = 2.50f)
+    public string ProductOfNumbers(float x, float y, float z = 1.0f)
     {
         return $"The product of numbers are {x*y*z}";
     }
