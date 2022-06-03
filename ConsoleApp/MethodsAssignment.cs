@@ -1,7 +1,7 @@
 
-// namespace MethodAssg();
+
 using System;
-// using System.Linq;
+
 class Assignment
 {
     public string FindGreatestNumber(byte x, byte y, byte z )
@@ -30,13 +30,18 @@ class Assignment
     {
         return $"The product of numbers are {x*y*z}";
     }
-    public void DisplayFirstLetter(string fullName)
+    // public void DisplayFirstLetter(string fullName)
+    // {
+    //     // string fullName = "Asmita Gautam"; 
+    //     string[] strSplit = fullName.Split(" ");
+    //     foreach(string st in strSplit)
+    //     {
+    //         Console.Write(st.Substring(0,1));
+    //     }
+    // }
+    public string GetInitials(string firstName, string secondName)
     {
-        // string fullName = "Asmita Gautam"; 
-        string[] strSplit = fullName.Split();
-        foreach(string st in strSplit)
-        {
-            Console.Write(st.Substring(0,1));
-        }
+        string initials = $"{firstName[0]}{secondName[0]}";
+        return initials.ToUpper(); 
     }
 }

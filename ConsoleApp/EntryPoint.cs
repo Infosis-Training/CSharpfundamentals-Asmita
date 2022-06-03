@@ -46,7 +46,8 @@ class EntryPoint
         Console.WriteLine( ma.FindGreatestNumber(20,35,50));
         Console.WriteLine(ma.ProductOfNumbers(1.5f,3.75f));
         // Console.WriteLine(ma.DisplayFirstLetter("Asmita Gautam"));
-        ma.DisplayFirstLetter("Asmita Gautam");
+        // ma.DisplayFirstLetter("Asmita Gautam");
+        Console.WriteLine(ma.GetInitials("asmita","gautam"));
     }
 
 }
