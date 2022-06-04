@@ -37,4 +37,14 @@ class Methods
         }
     }
     public bool IsEven(int num)=>num%2==0;
+
+    // returning multiple values, using tuple
+    public  (int, int) FindMinMax(byte x, byte y, byte z)
+    {
+        Assignment a = new();
+        int max = a.GetMax(x, y, z);
+        int min = a.GetMin(x, y, z);
+        // return $"The Min and Max Values are {min, max}";
+        return (min,max);
+    }
 }

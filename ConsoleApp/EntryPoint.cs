@@ -30,7 +30,9 @@ class EntryPoint
         // pg.PatternGenerate1();
         // pg.PatternGenerate2();
 
-        // Methods m = new();
+        Methods m = new();
+        (int,int) res = m.FindMinMax(34,56,12);
+        Console.WriteLine($"The min and max values are {res} respectively");
         // m.Print();
         // m.Print("Friend");
         // var d = m.Print("Asmita",20);
@@ -42,12 +44,12 @@ class EntryPoint
         // m.FindIfEvenOrOdd(7);
         // Console.WriteLine(m.IsEven(8));
         
-        Assignment ma = new();
-        Console.WriteLine( ma.FindGreatestNumber(20,35,50));
-        Console.WriteLine(ma.ProductOfNumbers(1.5f,3.75f));
-        // Console.WriteLine(ma.DisplayFirstLetter("Asmita Gautam"));
-        // ma.DisplayFirstLetter("Asmita Gautam");
-        Console.WriteLine(ma.GetInitials("asmita","gautam"));
+        // Assignment ma = new();
+        // Console.WriteLine( ma.FindGreatestNumber(20,35,50));
+        // Console.WriteLine(ma.ProductOfNumbers(1.5f,3.75f));
+        // // Console.WriteLine(ma.DisplayFirstLetter("Asmita Gautam"));
+        // // ma.DisplayFirstLetter("Asmita Gautam");
+        // Console.WriteLine(ma.GetInitials("asmita","gautam"));
     }
 
 }
