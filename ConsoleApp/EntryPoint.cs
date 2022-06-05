@@ -30,9 +30,9 @@ class EntryPoint
         // pg.PatternGenerate1();
         // pg.PatternGenerate2();
 
-        Methods m = new();
-        (int,int) res = m.FindMinMax(34,56,12);
-        Console.WriteLine($"The min and max values are {res} respectively");
+        // Methods m = new();
+        // (int,int) res = m.FindMinMax(34,56,12);
+        // Console.WriteLine($"The min and max values are {res} respectively");
         // m.Print();
         // m.Print("Friend");
         // var d = m.Print("Asmita",20);
@@ -50,6 +50,34 @@ class EntryPoint
         // // Console.WriteLine(ma.DisplayFirstLetter("Asmita Gautam"));
         // // ma.DisplayFirstLetter("Asmita Gautam");
         // Console.WriteLine(ma.GetInitials("asmita","gautam"));
+
+        // ExceptionHandling eh = new();
+        // double result = eh.Compute(1,2.5,-2.5);
+        // Console.WriteLine(result);
+    
+        // Properties  prop = new();
+        // // get
+        // prop.Name = "AG";  
+        // // set
+        // string s = prop.Name;
+        // Console.WriteLine(s);
+
+        // CollegeH ch = new();
+        // int remarks = ch.DetailsStudent(1,9);
+        // Console.WriteLine(remarks);
+
+        // HomeProperties ap = new();
+        // ap.CheckIFBellRings = "yes";
+        // string result =  ap.CheckIFBellRings;
+        // Console.WriteLine(result);
+        // Console.WriteLine(ap.IsPersonAvailable);
+
+        // Console.WriteLine(IsDesignCompleted.FindSum(10,20));
+        
+         IsDesignCompleted ic = new();
+         ic.Method1OfInterface();
+         ic.Method2OfInterface();
+
     }
 
 }
