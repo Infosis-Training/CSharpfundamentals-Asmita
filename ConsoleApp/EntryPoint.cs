@@ -20,7 +20,8 @@ class EntryPoint
         // Console.WriteLine(details);
 
         // Collection coll = new();
-        // coll.LearnArrays();
+        // // coll.LearnArrays();
+        // coll.LearnBuiltInCollections();
 
         // Basics strr = new();
         // strr.LearnLoops();
@@ -74,9 +75,17 @@ class EntryPoint
 
         // Console.WriteLine(IsDesignCompleted.FindSum(10,20));
         
-         IsDesignCompleted ic = new();
-         ic.Method1OfInterface();
-         ic.Method2OfInterface();
+        //  IsDesignCompleted ic = new();
+        //  ic.Method1OfInterface();
+        //  ic.Method2OfInterface();
+
+        // Generics g = new();
+        // float i=g.Sum<float>(20,40);
+        // string u=g.Sum<string>("AG","40");
+        // Console.WriteLine(g);
+
+        Linq l = new();
+        l.LearnLinq();
 
     }
 
