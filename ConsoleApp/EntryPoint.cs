@@ -85,17 +85,14 @@ class EntryPoint
         // float i=g.Sum<float>(20,40);
         // string u=g.Sum<string>("AG","40");
         // Console.WriteLine(g);
-
-<<<<<<< HEAD
+        
         // Linq l = new();
         // l.LearnLinq();
 
         AssignentLinq al = new();
         al.CheckValueOfBill();
-=======
         Linq l = new();
         l.LearnLinq();
->>>>>>> 6e52bce562413b14b9c9cf02fded93705f6622fe
 
     }
 
