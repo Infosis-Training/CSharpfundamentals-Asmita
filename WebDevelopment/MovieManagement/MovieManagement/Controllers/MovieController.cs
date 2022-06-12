@@ -48,6 +48,10 @@ namespace MovieManagement.Controllers
 
             return View(movies);
         }
+        public IActionResult Add()
+        {
+            return View();
+        }
     }
 }
 
