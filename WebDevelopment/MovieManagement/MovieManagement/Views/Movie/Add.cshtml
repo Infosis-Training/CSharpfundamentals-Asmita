@@ -11,7 +11,7 @@
 <h1>
 	Add new movies
 </h1>
-<form class="row g-3">
+<form class="row g-3" asp-controller="Movie" asp-action="Add" method="post">
   <div class="col-md-6">
     <label class="form-label" asp-for="Name">Name</label>
     <input class="form-control" asp-for = "Name">

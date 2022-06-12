@@ -44,13 +44,21 @@ namespace MovieManagement.Controllers
                 LengthInMin = 198,
                 ReleaseDate = DateTime.Parse("2022-01-01")
             };
-            List<Movie> movies = new(){movie1, movie2, movie3};
+            List<Movie> movies = new() { movie1, movie2, movie3 };
 
             return View(movies);
         }
+
+        [HttpGet]
         public IActionResult Add()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Add(Movie movie)
+        {
+            return RedirectToAction(nameof(Index));
         }
     }
 }
