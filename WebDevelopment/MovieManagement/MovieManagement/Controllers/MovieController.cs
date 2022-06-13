@@ -28,6 +28,9 @@ namespace MovieManagement.Controllers
         [HttpPost]
         public IActionResult Add(Movie movie)
         {
+            movie.Code = Guid.NewGuid().ToString();
+            _db.Movies.Add(movie);
+            _db.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
     }
