@@ -1,4 +1,7 @@
 ﻿@model Movie
+@{
+	ViewData["Title"] = "Add new movies";
+}
 
 @{
     List<SelectListItem> genres = new();
@@ -16,6 +19,7 @@
   <div class="col-md-6">
     <label class="form-label" asp-for="Name">Name</label>
     <input class="form-control" asp-for = "Name">
+    <span asp-validation-for="Name" class="text-danger"></span>
   </div>
   <div class="col-md-6">
     <label class="form-label" asp-for="Code">Code</label>
@@ -24,10 +28,12 @@
   <div class="col-md-4">
     <label class="form-label" asp-for="LengthInMin">LengthInMin</label>
     <input class="form-control" asp-for = "LengthInMin">
+    <span asp-validation-for="LengthInMin" class="text-danger"></span>
   </div>
   <div class="col-md-4">
     <label class="form-label" asp-for="ReleaseDate">Release Date</label>
     <input class="form-control" asp-for = "ReleaseDate">
+    <span asp-validation-for="ReleaseDate" class="text-danger"></span>
    </div>
   <div class="col-md-4">
     <label class="form-label" asp-for="Genre">Genre</label>

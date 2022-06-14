@@ -9,6 +9,7 @@ namespace MovieManagement.Controllers
     {
         private readonly MovieManagementDb _db;
 
+        //dependency injection
         public MovieController(MovieManagementDb db)
         {
             _db = db;
@@ -28,6 +29,7 @@ namespace MovieManagement.Controllers
         [HttpPost]
         public IActionResult Add(Movie movie)
         {
+            //randomly generate code
             movie.Code = Guid.NewGuid().ToString();
             _db.Movies.Add(movie);
             _db.SaveChanges();
@@ -37,26 +39,27 @@ namespace MovieManagement.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
-            var change = _db.Movies.Where(x => x.Id == id).FirstOrDefault();
+            var change = _db.Movies.Find(id);
             return View(change);
         }
 
         [HttpPost]
         public IActionResult Update(Movie movie1)
         {
-            var changeData = _db.Movies.Where(x => x.Id == movie1.Id).FirstOrDefault();
-            if (changeData != null)
-            {
-                changeData.Name = movie1.Name;
-                changeData.Description = movie1.Description;
-                changeData.Code = movie1.Code;
-                changeData.Genre = movie1.Genre;
-                changeData.ReleaseDate = movie1.ReleaseDate;
-                changeData.LengthInMin = movie1.LengthInMin;
-                _db.SaveChanges();
-            }
+            //var changeData = _db.Movies.Find(movie1.Id);
+            //if (changeData != null)
+            //{
+            //    changeData.Name = movie1.Name;
+            //    changeData.Description = movie1.Description;
+            //    changeData.Code = movie1.Code;
+            //    changeData.Genre = movie1.Genre;
+            //    changeData.ReleaseDate = movie1.ReleaseDate;
+            //    changeData.LengthInMin = movie1.LengthInMin;
+            //    _db.SaveChanges();
+            //}
+            _db.Movies.Update(movie1);
+            _db.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
     }
 }
-
