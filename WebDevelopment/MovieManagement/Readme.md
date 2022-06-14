@@ -25,3 +25,7 @@ builder.Services.AddDbContext<MovieManagementDb>(options =>
         options.UseSqlServer(@"Server=(localdb)\mssqlocaldb;Database=MovieDb;Trusted_Connection=True");
     });
 ```
+
+Assignment:
+Add dropdown in ADD
+Add update button: both get and post action req

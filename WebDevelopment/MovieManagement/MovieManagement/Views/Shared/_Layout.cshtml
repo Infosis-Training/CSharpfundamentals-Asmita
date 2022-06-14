@@ -26,8 +26,18 @@
                             <a class="nav-link text-dark" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href = "/movie/index"> Movie </a>
+                            <div class="dropdown">
+                                <button type = "button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                 Movie
+                                </button>
+
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item" href="/movie/index">Index</a></li>
+                                    <li><a class="dropdown-item" href="/movie/add">Add</a></li>
+                                </ul>
+                            </div>
                         </li>
+                        
                     </ul>
                 </div>
             </div>

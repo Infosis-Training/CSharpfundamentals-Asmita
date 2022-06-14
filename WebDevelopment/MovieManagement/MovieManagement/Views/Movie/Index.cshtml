@@ -10,6 +10,7 @@
 			<th scope="col">Description</th>
 			<th scope="col">Release Date</th>
 			<th scope="col">Movie Length</th>
+			<th> </th>
 		</tr>
 	</thead>
 	<tbody>
@@ -26,6 +27,10 @@
 				<td>@movie.Description</td>
 				<td>@movie.ReleaseDate</td>
 				<td>@movie.LengthInMin</td>
+				<td> 
+					<a asp-controller="Movie" asp-action="Update" class="btn btn-outline-info" asp-route-Id ="@movie.Id">Update</a>
+					@*<a class = "btn btn-success" href="/movie/update">Update</a>*@
+				</td>
 			</tr>
 		}
 	</tbody>

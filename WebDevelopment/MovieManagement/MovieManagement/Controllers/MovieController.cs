@@ -33,6 +33,30 @@ namespace MovieManagement.Controllers
             _db.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+            var change = _db.Movies.Where(x => x.Id == id).FirstOrDefault();
+            return View(change);
+        }
+
+        [HttpPost]
+        public IActionResult Update(Movie movie1)
+        {
+            var changeData = _db.Movies.Where(x => x.Id == movie1.Id).FirstOrDefault();
+            if (changeData != null)
+            {
+                changeData.Name = movie1.Name;
+                changeData.Description = movie1.Description;
+                changeData.Code = movie1.Code;
+                changeData.Genre = movie1.Genre;
+                changeData.ReleaseDate = movie1.ReleaseDate;
+                changeData.LengthInMin = movie1.LengthInMin;
+                _db.SaveChanges();
+            }
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
 

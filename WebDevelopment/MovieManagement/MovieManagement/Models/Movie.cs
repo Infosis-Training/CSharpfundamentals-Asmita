@@ -10,6 +10,5 @@
         public DateTime ReleaseDate { get; set; }
         public float LengthInMin { get; set; }
 
-
     }
 }
