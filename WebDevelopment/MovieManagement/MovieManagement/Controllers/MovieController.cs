@@ -30,7 +30,8 @@ namespace MovieManagement.Controllers
         public IActionResult Add(Movie movie)
         {
             //randomly generate code
-            movie.Code = Guid.NewGuid().ToString();
+            movie.Code = Guid.NewGuid().ToString(); 
+
             _db.Movies.Add(movie);
             _db.SaveChanges();
             return RedirectToAction(nameof(Index));
@@ -58,6 +59,22 @@ namespace MovieManagement.Controllers
             //    _db.SaveChanges();
             //}
             _db.Movies.Update(movie1);
+            _db.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var change = _db.Movies.Find(id);
+            return View(change);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Movie movie1)
+        {
+            _db.Movies.Remove(movie1);
             _db.SaveChanges();
             return RedirectToAction(nameof(Index));
         }

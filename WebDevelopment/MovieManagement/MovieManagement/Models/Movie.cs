@@ -10,6 +10,7 @@ namespace MovieManagement.Models
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public string Code { get; set; } = string.Empty;
+
         [Required]
         public string Genre { get; set; } = string.Empty;
         [Required]
