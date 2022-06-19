@@ -1,0 +1,11 @@
+﻿@page "/images"
+@model ImageProcessor.Pages.ImageUploadModel
+
+<form enctype="multipart/form-data" method="post">
+	<div class="mb-3">
+		<label for="formFile" class="form-label">Default file input example</label>
+		<input class="form-control" asp-for="File">
+	</div>
+	<button type="submit" class="btn btn-success">Upload Images</button>
+</form>
+<image src="~/image/sunsetRotated.jpg"></image>
