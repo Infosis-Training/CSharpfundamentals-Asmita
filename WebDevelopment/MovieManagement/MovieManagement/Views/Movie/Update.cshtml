@@ -1,15 +1,8 @@
 ﻿
-@model Movie
+@using MovieManagement.ViewModel
+@model MovieViewModel
 @{
 	ViewData["Title"] = "Update movies";
-}
-
-@{
-    List<SelectListItem> genres = new();
-    genres.Add(new SelectListItem() { Text = "Select genre", Value = "Comedy" });
-    genres.Add(new SelectListItem() { Text = "Comedy", Value = "Comedy" });
-    genres.Add(new SelectListItem() { Text = "Science Friction", Value = "Science Friction" });
-    genres.Add(new SelectListItem() { Text = "Action", Value = "Action" });
 }
 
  <h1>
@@ -37,7 +30,7 @@
        </div>
       <div class="col-md-4">
         <label class="form-label" asp-for="Genre">Genre</label>
-        <select class="form-control" asp-for="Genre" asp-items="genres"></select>
+        <select class="form-control" asp-for="Genre" asp-items="Model.Genres"></select>
       </div>
       <div class="col-12">
         <label class="form-label" asp-for="Description">Description</label>

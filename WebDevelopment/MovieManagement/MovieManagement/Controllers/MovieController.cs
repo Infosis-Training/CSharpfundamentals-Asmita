@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using MovieManagement.Data;
+using MovieManagement.Mapper;
 using MovieManagement.Models;
+using MovieManagement.ViewModel;
 using System.Collections.Generic;
 
 namespace MovieManagement.Controllers
@@ -16,48 +20,54 @@ namespace MovieManagement.Controllers
         }
         public IActionResult Index()
         {
-            var movies = _db.Movies.ToList();
-            return View(movies);
+            var movies = _db.Movies.Include(x=>x.Genre).ToList();
+
+            var movieViewModels = movies.Select(y => y.ToViewModel()).ToList();
+
+            return View(movieViewModels);
         }
 
         [HttpGet]
-        public IActionResult Add()
+        public async Task<IActionResult> Add()
         {
-            return View();
+
+            MovieViewModel movieViewModel = new()
+            {
+                Genres = GetGenreSelectListItems()
+            };
+
+            return View(movieViewModel);
         }
 
         [HttpPost]
-        public IActionResult Add(Movie movie)
+        public IActionResult Add(MovieViewModel movieViewModel)
         {
-            //randomly generate code
-            movie.Code = Guid.NewGuid().ToString(); 
+            var movie = movieViewModel.ToModel();
 
+            //Do something with movie object
             _db.Movies.Add(movie);
+
+
+
+            // Commite to the database 
             _db.SaveChanges();
+
             return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]
         public IActionResult Update(int id)
         {
-            var change = _db.Movies.Find(id);
-            return View(change);
+            var movieToEdit = _db.Movies.Find(id);
+            var movieViewModel = movieToEdit.ToViewModel();
+            movieViewModel.Genres = GetGenreSelectListItems();
+
+            return View();
         }
 
         [HttpPost]
         public IActionResult Update(Movie movie1)
         {
-            //var changeData = _db.Movies.Find(movie1.Id);
-            //if (changeData != null)
-            //{
-            //    changeData.Name = movie1.Name;
-            //    changeData.Description = movie1.Description;
-            //    changeData.Code = movie1.Code;
-            //    changeData.Genre = movie1.Genre;
-            //    changeData.ReleaseDate = movie1.ReleaseDate;
-            //    changeData.LengthInMin = movie1.LengthInMin;
-            //    _db.SaveChanges();
-            //}
             _db.Movies.Update(movie1);
             _db.SaveChanges();
             return RedirectToAction(nameof(Index));
@@ -77,6 +87,21 @@ namespace MovieManagement.Controllers
             _db.Movies.Remove(movie1);
             _db.SaveChanges();
             return RedirectToAction(nameof(Index));
+        }
+        private List<SelectListItem> GetGenreSelectListItems()
+        {
+            var genres = _db.Genre.ToList();
+
+            var genresItems = genres.Select(x =>
+                            new SelectListItem
+                            {
+                                Text = x.Name,
+                                Value = x.Id.ToString()
+                            }).ToList();
+
+            genresItems.Add(new SelectListItem { Text = "Choose gender...", Value = "", Selected = true });
+
+            return genresItems;
         }
     }
 }

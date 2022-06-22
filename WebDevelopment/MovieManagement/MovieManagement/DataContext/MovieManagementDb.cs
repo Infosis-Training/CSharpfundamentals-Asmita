@@ -13,5 +13,7 @@ namespace MovieManagement.Data
         public DbSet<Movie> Movies { get; set; }
 
         public DbSet<MovieManagement.Models.Crew>? Crew { get; set; }
+
+        public DbSet<MovieManagement.Models.Genre>? Genre { get; set; }
     }
 }
