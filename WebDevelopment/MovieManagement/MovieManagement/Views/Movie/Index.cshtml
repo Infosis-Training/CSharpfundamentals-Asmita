@@ -38,16 +38,11 @@
                 <td>@movieViewModel.ReleaseDate</td>
                 <td>@movieViewModel.LengthInMin</td>
                 <td>
-                 <a asp-controller="Movie" asp-action="Update" class="btn btn-outline-success"  asp-route-Id ="@movieViewModel.Id">Edit</a>
-             </td>
-              <td>
-                 <a asp-controller="Movie" asp-action="Delete" class="btn btn-outline-danger"  asp-route-Id ="@movieViewModel.Id">Remove</a>
-             </td>
+                     <a asp-controller="Movie" asp-action="Update" class="btn btn-outline-success"  asp-route-Id ="@movieViewModel.Id">Edit</a>
+                     <a asp-controller="Movie" asp-action="Delete" class="btn btn-outline-danger"  asp-route-Id ="@movieViewModel.Id">Remove</a>
+                </td>
              
-        </tr>
-       
-            
-
+            </tr>
         }
        
   </tbody>

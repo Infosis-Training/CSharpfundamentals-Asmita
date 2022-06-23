@@ -21,9 +21,12 @@ namespace MovieManagement.Controllers
         public IActionResult Index()
         {
             var movies = _db.Movies.Include(x=>x.Genre).ToList();
+            List<MovieViewModel> movieViewModels = new();
+            if (movies.Any())
+            {
+                movieViewModels = movies.Select(y => y.ToViewModel()).ToList();
 
-            var movieViewModels = movies.Select(y => y.ToViewModel()).ToList();
-
+            }
             return View(movieViewModels);
         }
 
@@ -40,19 +43,21 @@ namespace MovieManagement.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(MovieViewModel movieViewModel)
+        public IActionResult Add([FromForm]MovieViewModel movieViewModel)
         {
-            var movie = movieViewModel.ToModel();
+            if (!ModelState.IsValid)
+            {
+                var movie = movieViewModel.ToModel();
 
-            //Do something with movie object
-            _db.Movies.Add(movie);
+                //Do something with movie object
+                _db.Movies.Add(movie);
 
+                // Commite to the database 
+                _db.SaveChanges();
 
-
-            // Commite to the database 
-            _db.SaveChanges();
-
-            return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index));
+            }
+            return View(movieViewModel);
         }
 
         [HttpGet]
@@ -66,9 +71,10 @@ namespace MovieManagement.Controllers
         }
 
         [HttpPost]
-        public IActionResult Update(Movie movie1)
+        public IActionResult Update(MovieViewModel movieViewModel)
         {
-            _db.Movies.Update(movie1);
+            var movieToUpdate= movieViewModel.ToModel();
+            _db.Movies.Update(movieToUpdate);
             _db.SaveChanges();
             return RedirectToAction(nameof(Index));
         }

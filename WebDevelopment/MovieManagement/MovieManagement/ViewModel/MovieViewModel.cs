@@ -31,7 +31,6 @@ namespace MovieManagement.ViewModel
 
         public IFormFile Banner { get; set; }
         public string BannerDataUrl { get; set; }
-
-
+        public List<String> PagingUrls { get; set; } = new List<string>();
     }
 }
