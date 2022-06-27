@@ -18,14 +18,34 @@ namespace MovieManagement.Controllers
         {
             _db = db;
         }
-        public IActionResult Index()
+        public IActionResult Index(string searchString, string sortOrder)
         {
-            var movies = _db.Movies.Include(x=>x.Genre).ToList();
-            List<MovieViewModel> movieViewModels = new();
-            if (movies.Any())
-            {
-                movieViewModels = movies.Select(y => y.ToViewModel()).ToList();
+            ViewData["MovieNameSortParam"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["ReleaseDateSortParam"] = sortOrder == "release_date_desc" ? "release_date_asc" : "release_date_desc";
+            ViewData["CurrentFilter"] = searchString;
 
+            var movies = _db.Movies.Include(x => x.Genre).AsQueryable();
+            var movieViewModels = new List<MovieViewModel>();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(s => s.Name.Contains(searchString)
+                                       || s.Description.Contains(searchString));
+            }
+
+            movies = sortOrder switch
+            {
+                "name_desc" => movies.OrderByDescending(x => x.Name),
+                "release_date_desc" => movies.OrderByDescending(x => x.ReleaseDate),
+                "release_date_asc" => movies.OrderBy(x => x.ReleaseDate),
+
+                //_ is default
+                _ => movies.OrderBy(x => x.Name)
+            };
+            var moviesFetched = movies.ToList();
+            if (moviesFetched.Any())
+            {
+                movieViewModels = moviesFetched.Select(x => x.ToViewModel()).ToList();
             }
             return View(movieViewModels);
         }
@@ -45,6 +65,8 @@ namespace MovieManagement.Controllers
         [HttpPost]
         public IActionResult Add([FromForm]MovieViewModel movieViewModel)
         {
+
+
             if (!ModelState.IsValid)
             {
                 var movie = movieViewModel.ToModel();
@@ -63,20 +85,30 @@ namespace MovieManagement.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
-            var movieToEdit = _db.Movies.Find(id);
-            var movieViewModel = movieToEdit.ToViewModel();
+
+            var movieToEdit = _db.Movies.Include(x => x.Genre)
+                                        .FirstOrDefault(x => x.Id == id);
+            var movieViewModel = movieToEdit?.ToViewModel();
             movieViewModel.Genres = GetGenreSelectListItems();
 
-            return View();
+            if (movieViewModel == null)
+                return RedirectToAction(nameof(Index));
+            return View(movieViewModel);
+
         }
 
         [HttpPost]
         public IActionResult Update(MovieViewModel movieViewModel)
         {
-            var movieToUpdate= movieViewModel.ToModel();
-            _db.Movies.Update(movieToUpdate);
-            _db.SaveChanges();
+            if (movieViewModel != null && ModelState.IsValid)
+            {
+                var movieToUpdate = movieViewModel.ToModel();
+                _db.Movies.Update(movieToUpdate);
+                _db.SaveChanges();
+                //return RedirectToAction(nameof(Index));
+            }
             return RedirectToAction(nameof(Index));
+
         }
 
 
@@ -105,7 +137,7 @@ namespace MovieManagement.Controllers
                                 Value = x.Id.ToString()
                             }).ToList();
 
-            genresItems.Add(new SelectListItem { Text = "Choose gender...", Value = "", Selected = true });
+            genresItems.Add(new SelectListItem { Text = "Choose gener...", Value = "", Selected = true });
 
             return genresItems;
         }

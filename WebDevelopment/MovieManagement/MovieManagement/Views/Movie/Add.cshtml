@@ -8,7 +8,7 @@
 <h1>
 	Add new movies
 </h1>
-<form class="row g-3" asp-controller="Movie" asp-action="Add" method="post">
+<form class="row g-3" asp-controller="Movie" asp-action="Add" method="post" enctype="multipart/form-data">
   
   <div class="col-md-6">
     <label class="form-label" asp-for="Name">Name</label>
@@ -26,9 +26,9 @@
     <span asp-validation-for="ReleaseDate" class="text-danger"></span>
    </div>
   <div class="col-md-4">
-    <label class="form-label" asp-for="Genre"></label>
-    <select class="form-control" asp-for="Genre" asp-items="Model.Genres"></select>
-    <span class="text-danger" asp-validation-for="Genre"></span>
+    <label class="form-label" asp-for="GenreId"></label>
+    <select class="form-control" asp-for="GenreId" asp-items="Model.Genres"></select>
+    <span class="text-danger" asp-validation-for="GenreId"></span>
   </div>
   <div class="col-md-12">
         <label asp-for="Banner" class="form-label">Select Banner</label>

@@ -1,53 +1,70 @@
 ﻿@using MovieManagement.ViewModel
 @model List<MovieViewModel>
 
+
 @{
-    ViewData["Title"] = "All Movies";
+    ViewData["Title"] = "List of All Movies";
 }
-<h4 class="">All movies</h4>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Serial No.</th>
-       <th scope="col">Banner</th>
-      <th scope="col">Movie Name</th>
-      <th scope="col">Genre</th>
-      <th scope="col">Movie Code</th>
-      <th scope="col">Description</th>
-      <th scope="col">Release Date</th>
-      <th scope="col">Movie Length</th>
-      <th scope="col">Actions</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-      @{
+
+<form asp-action="Index" method="get" class="row">
+    <div class="col-md-5">
+        <input class="form-control" type="text" name="SearchString" value="@ViewData["CurrentFilter"]" placeholder="Type movie keywords: name, description etc." />
+    </div>
+    <div class="col-md-2">
+        <div class="btn-group w-100">
+            <input class="form-control btn btn-primary" type="submit" value="Search" />
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle w-100" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Sort By
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" asp-action="Index" asp-route-sortOrder="@ViewData["MovieNameSortParam"]">Movie Name</a></li>
+                <li><a class="dropdown-item" asp-action="Index" asp-route-sortOrder="@ViewData["ReleaseDateSortParam"]">Release Date</a></li>
+                <li><a class="dropdown-item" asp-action="Index">Clear all filter</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+       <small class="text-muted"><a class = "btn btn-success" href="/movie/add">
+	        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+            </svg> Add movie</a>
+       </small>
+    </div>
+</form>
+<hr />
+
+        
+
+@{
           int i = 1;
-      }
+ }
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+   
+    @foreach (var movieViewModel in Model)
+    {
+          <div class="card-group">
+            <div class="card h-100">
+              <img src="@movieViewModel.BannerDataUrl" class="card-img-top" alt="movie-banner">
+              <div class="card-body">
+                <h5 class="card-title">@movieViewModel.Name</h5>
+                <p class="card-text">@movieViewModel.Description</p>
+              </div>
+              
+              <div class="card-footer">
+                  <a asp-controller="Movie" asp-action="Update" class="btn btn-outline-success"  asp-route-Id ="@movieViewModel.Id">Edit</a>
+                  <a asp-controller="Movie" asp-action="Delete" class="btn btn-outline-danger"  asp-route-Id ="@movieViewModel.Id">Remove</a>
+                  <small class="text-muted">Released on @movieViewModel.ReleaseDate</small>
 
-         @foreach (var movieViewModel in Model)
-        {
-            <tr>
-                <th scope="row">@(i++)</th>
-                <td  class="p-100"><img class="img-thumbnail img-fluid" src="@movieViewModel.BannerDataUrl"></td>
-                <td>@movieViewModel.Name</td>
-                <td>@movieViewModel.Genre</td>
-                <td>@movieViewModel.Code</td>
-                <td>@movieViewModel.Description</td>
-                <td>@movieViewModel.ReleaseDate</td>
-                <td>@movieViewModel.LengthInMin</td>
-                <td>
-                     <a asp-controller="Movie" asp-action="Update" class="btn btn-outline-success"  asp-route-Id ="@movieViewModel.Id">Edit</a>
-                     <a asp-controller="Movie" asp-action="Delete" class="btn btn-outline-danger"  asp-route-Id ="@movieViewModel.Id">Remove</a>
-                </td>
-             
-            </tr>
-        }
-       
-  </tbody>
-</table>
-<a class = "btn btn-success" href="/movie/add">
-	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
-</svg> Add movie</a>
+              </div>
+            </div>
+          </div>
+    }
+  </div> 
+   

@@ -12,7 +12,7 @@ using MovieManagement.Data;
 namespace MovieManagement.Migrations
 {
     [DbContext(typeof(MovieManagementDb))]
-    [Migration("20220622011140_AddGenre")]
+    [Migration("20220625080603_AddGenre")]
     partial class AddGenre
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

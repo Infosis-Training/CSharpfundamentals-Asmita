@@ -15,22 +15,22 @@ namespace MovieManagement.ViewModel
 
         public string Code { get; set; } = String.Empty;
 
+        public string? GenreName { get; set; } = String.Empty;
+        public int? GenreId { get; set; }
+
+
+        public List<SelectListItem>? Genres { get; set; }
+
 
         [Required]
-        public string Genre { get; set; } = String.Empty;
-
-        public List<SelectListItem> Genres { get; set; }
-
-
-        [Required]
-        public DateTime ReleaseDate { get; set; }
+        public DateTime ReleaseDate { get; set; } = DateTime.Now;
 
         [Required]
 
         public float LengthInMin { get; set; }
 
-        public IFormFile Banner { get; set; }
-        public string BannerDataUrl { get; set; }
+        public IFormFile? Banner { get; set; }
+        public string? BannerDataUrl { get; set; } = string.Empty;
         public List<String> PagingUrls { get; set; } = new List<string>();
     }
 }

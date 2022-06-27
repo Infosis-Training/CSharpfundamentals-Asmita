@@ -7,32 +7,35 @@ namespace MovieManagement.Mapper
     {
         public static MovieViewModel ToViewModel(this Movie movie)
         {
-            return new MovieViewModel()
+            var movieViewModel = new MovieViewModel()
             {
                 Name = movie.Name,
                 Description = movie.Description,
-                Genre = movie.Genre?.Name ?? "N/A",
+                GenreId = movie.Genre?.Id,
+                GenreName = movie.Genre?.Name ?? "N/A",
                 LengthInMin = movie.LengthInMin,
                 ReleaseDate = movie.ReleaseDate,
-                BannerDataUrl = $"data:image/png;base64,{Convert.ToBase64String(movie.Banner)}",
+                BannerDataUrl = $"data:image/png;base64,{Convert.ToBase64String(movie.Banner ?? Array.Empty<byte>())}",
                 Code = movie.Code,
                 Id = movie.Id
             };
+            return movieViewModel;
         }
 
         public static Movie ToModel(this MovieViewModel movieViewModel)
         {
             var movie = new Movie
             {
+                Id = movieViewModel.Id,
                 Name = movieViewModel.Name,
+                GenreId = movieViewModel.GenreId,
                 Description = movieViewModel.Description ?? "N/A",
                 LengthInMin = movieViewModel.LengthInMin,
                 ReleaseDate = movieViewModel.ReleaseDate,
                 Code = Guid.NewGuid().ToString()
             };
 
-            int.TryParse(movieViewModel.Genre, out int genreId);
-            movie.GenreId = genreId == default ? null : genreId;
+            
 
             var stream = new MemoryStream();
             movieViewModel.Banner?.CopyTo(stream);
