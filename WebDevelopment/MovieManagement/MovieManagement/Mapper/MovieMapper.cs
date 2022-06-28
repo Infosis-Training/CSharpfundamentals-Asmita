@@ -1,5 +1,6 @@
 ﻿using MovieManagement.Models;
 using MovieManagement.ViewModel;
+using MovieManagement.Helpers;
 
 namespace MovieManagement.Mapper
 {
@@ -42,6 +43,22 @@ namespace MovieManagement.Mapper
             movie.Banner = stream.ToArray();
 
             return movie;
+        }
+
+        public static PaginationList<MovieViewModel> ToPaginatedViewModels(this PaginationList<Movie> models)
+        {
+            var pList = new PaginationList<MovieViewModel>();
+
+            if (!models.Any())
+                return pList;
+
+            pList.PageIndex = models.PageIndex;
+            pList.TotalPages = models.TotalPages;
+
+            var viewModels = models.Select(x => x.ToViewModel());
+            pList.AddRange(viewModels);
+
+            return pList;
         }
     }
 }

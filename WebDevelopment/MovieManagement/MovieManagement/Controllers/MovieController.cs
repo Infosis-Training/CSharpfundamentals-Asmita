@@ -5,6 +5,7 @@ using MovieManagement.Data;
 using MovieManagement.Mapper;
 using MovieManagement.Models;
 using MovieManagement.ViewModel;
+using MovieManagement.Helpers;
 using System.Collections.Generic;
 
 namespace MovieManagement.Controllers
@@ -18,14 +19,17 @@ namespace MovieManagement.Controllers
         {
             _db = db;
         }
-        public IActionResult Index(string searchString, string sortOrder)
+        public IActionResult Index(string searchString, string sortOrder, int pageNumber=1, int pageSize=3)
         {
+            ViewData["CurrentSearch"] = sortOrder;
+            ViewData["PageNumber"] = pageNumber;
+
             ViewData["MovieNameSortParam"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["ReleaseDateSortParam"] = sortOrder == "release_date_desc" ? "release_date_asc" : "release_date_desc";
             ViewData["CurrentFilter"] = searchString;
 
             var movies = _db.Movies.Include(x => x.Genre).AsQueryable();
-            var movieViewModels = new List<MovieViewModel>();
+            //var movieViewModels = new List<MovieViewModel>();
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -38,20 +42,23 @@ namespace MovieManagement.Controllers
                 "name_desc" => movies.OrderByDescending(x => x.Name),
                 "release_date_desc" => movies.OrderByDescending(x => x.ReleaseDate),
                 "release_date_asc" => movies.OrderBy(x => x.ReleaseDate),
-
-                //_ is default
+                "genre_desc" => movies.OrderByDescending(x => x.Genre.Name),
+                "genre_asc" => movies.OrderBy(x => x.Genre.Name),
                 _ => movies.OrderBy(x => x.Name)
             };
-            var moviesFetched = movies.ToList();
-            if (moviesFetched.Any())
-            {
-                movieViewModels = moviesFetched.Select(x => x.ToViewModel()).ToList();
-            }
-            return View(movieViewModels);
+            //var moviesFetched = movies.ToList();
+            //if (moviesFetched.Any())
+            //{
+            //    movieViewModels = moviesFetched.Select(x => x.ToViewModel()).ToList();
+            //}
+            var moviesFetched = new PaginationList<Movie>(movies, pageNumber, pageSize);
+
+            var list = moviesFetched.ToPaginatedViewModels();
+            return View(list);
         }
 
         [HttpGet]
-        public async Task<IActionResult> Add()
+        public IActionResult Add()
         {
 
             MovieViewModel movieViewModel = new()
@@ -63,11 +70,11 @@ namespace MovieManagement.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add([FromForm]MovieViewModel movieViewModel)
+        public async Task<IActionResult> Add([FromForm]MovieViewModel movieViewModel)
         {
 
 
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var movie = movieViewModel.ToModel();
 
@@ -75,7 +82,7 @@ namespace MovieManagement.Controllers
                 _db.Movies.Add(movie);
 
                 // Commite to the database 
-                _db.SaveChanges();
+                await _db.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));
             }
