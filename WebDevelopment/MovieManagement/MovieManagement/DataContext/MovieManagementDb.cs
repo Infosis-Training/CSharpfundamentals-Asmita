@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using MovieManagement.Models;
 
 namespace MovieManagement.Data
 {
-    public class MovieManagementDb : DbContext
+    public class MovieManagementDb : IdentityDbContext
     {
         public MovieManagementDb(DbContextOptions<MovieManagementDb> options)
             : base(options)
@@ -14,6 +15,6 @@ namespace MovieManagement.Data
 
         public DbSet<MovieManagement.Models.Crew>? Crew { get; set; }
 
-        public DbSet<MovieManagement.Models.Genre>? Genre { get; set; }
+        public DbSet<Genre>? Genre { get; set; }
     }
 }

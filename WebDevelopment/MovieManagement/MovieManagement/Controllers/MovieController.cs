@@ -7,9 +7,11 @@ using MovieManagement.Models;
 using MovieManagement.ViewModel;
 using MovieManagement.Helpers;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MovieManagement.Controllers
 {
+    [Authorize]
     public class MovieController : Controller
     {
         private readonly MovieManagementDb _db;
@@ -28,30 +30,30 @@ namespace MovieManagement.Controllers
             ViewData["ReleaseDateSortParam"] = sortOrder == "release_date_desc" ? "release_date_asc" : "release_date_desc";
             ViewData["CurrentFilter"] = searchString;
 
-            var movies = _db.Movies.Include(x => x.Genre).AsQueryable();
+            var movieQuery = _db.Movies.Include(x => x.Genre).AsQueryable();
             //var movieViewModels = new List<MovieViewModel>();
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                movies = movies.Where(s => s.Name.Contains(searchString)
+                movieQuery = movieQuery.Where(s => s.Name.Contains(searchString)
                                        || s.Description.Contains(searchString));
             }
 
-            movies = sortOrder switch
+            movieQuery = sortOrder switch
             {
-                "name_desc" => movies.OrderByDescending(x => x.Name),
-                "release_date_desc" => movies.OrderByDescending(x => x.ReleaseDate),
-                "release_date_asc" => movies.OrderBy(x => x.ReleaseDate),
-                "genre_desc" => movies.OrderByDescending(x => x.Genre.Name),
-                "genre_asc" => movies.OrderBy(x => x.Genre.Name),
-                _ => movies.OrderBy(x => x.Name)
+                "name_desc" => movieQuery.OrderByDescending(x => x.Name),
+                "release_date_desc" => movieQuery.OrderByDescending(x => x.ReleaseDate),
+                "release_date_asc" => movieQuery.OrderBy(x => x.ReleaseDate),
+                "genre_desc" => movieQuery.OrderByDescending(x => x.Genre.Name),
+                "genre_asc" => movieQuery.OrderBy(x => x.Genre.Name),
+                _ => movieQuery.OrderBy(x => x.Name)
             };
             //var moviesFetched = movies.ToList();
             //if (moviesFetched.Any())
             //{
             //    movieViewModels = moviesFetched.Select(x => x.ToViewModel()).ToList();
             //}
-            var moviesFetched = new PaginationList<Movie>(movies, pageNumber, pageSize);
+            var moviesFetched = new PaginationList<Movie>(movieQuery, pageNumber, pageSize);
 
             var list = moviesFetched.ToPaginatedViewModels();
             return View(list);
