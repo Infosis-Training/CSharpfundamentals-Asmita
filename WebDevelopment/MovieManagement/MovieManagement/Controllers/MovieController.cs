@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MovieManagement.Controllers
 {
-    [Authorize]
+   
     public class MovieController : Controller
     {
         private readonly MovieManagementDb _db;
@@ -58,7 +58,7 @@ namespace MovieManagement.Controllers
             var list = moviesFetched.ToPaginatedViewModels();
             return View(list);
         }
-
+        [Authorize]
         [HttpGet]
         public IActionResult Add()
         {
@@ -70,7 +70,7 @@ namespace MovieManagement.Controllers
 
             return View(movieViewModel);
         }
-
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Add([FromForm]MovieViewModel movieViewModel)
         {
@@ -90,7 +90,7 @@ namespace MovieManagement.Controllers
             }
             return View(movieViewModel);
         }
-
+        [Authorize]
         [HttpGet]
         public IActionResult Update(int id)
         {
@@ -105,7 +105,7 @@ namespace MovieManagement.Controllers
             return View(movieViewModel);
 
         }
-
+        [Authorize]
         [HttpPost]
         public IActionResult Update(MovieViewModel movieViewModel)
         {
@@ -120,13 +120,14 @@ namespace MovieManagement.Controllers
 
         }
 
-
+        [Authorize]
         [HttpGet]
         public IActionResult Delete(int id)
         {
             var change = _db.Movies.Find(id);
             return View(change);
         }
+        [Authorize]
 
         [HttpPost]
         public IActionResult Delete(Movie movie1)

@@ -4,12 +4,14 @@ using MovieManagement.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//add connection string
+var connectionString = builder.Configuration.GetConnectionString("devconnection") ?? throw new InvalidOperationException("Connection string 'devconnection' not found.");
+
+builder.Services.AddDbContext<MovieManagementDb>(options =>
+    options.UseSqlServer(connectionString));;
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<MovieManagementDb>(options =>
-{
-    options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=MovieDb;Trusted_Connection=True");
-});
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 {

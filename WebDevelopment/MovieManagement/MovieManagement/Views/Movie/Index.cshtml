@@ -85,23 +85,21 @@
 
         
 
-@{
+@*@{
           int i = 1;
- }
-  <div class="row row-cols-1 row-cols-md-3 g-4">
+ }*@
+<div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
+
    
     @foreach (var movieViewModel in Model)
     {
-          <div class="card-group">
+         @* <div class="card-group">
             <div class="card h-100">
               <img src="@movieViewModel.BannerDataUrl" class="card-img-top" alt="movie-banner">
               <div class="card-body">
                 <h5 class="card-title">
                     @movieViewModel.Name
-                    @*<span class="float-end">
-                            <a asp-action="Update" asp-route-id="@movieViewModel.Id" title="Edit"><i class="bi bi-pencil-fill text-warning"></i></a>
-                            <a asp-action="Delete" asp-route-id="@movieViewModel.Id" title="Delete"><i class="bi bi-trash-fill text-danger"></i></a>
-                    </span>*@
+                    
                 </h5>
                 <h6 class="card-subtitle mb-2 text-muted">@movieViewModel.GenreName (Length: @movieViewModel.LengthInMin mins)</h6>
                 <p class="card-text">@movieViewModel.Description</p>
@@ -114,7 +112,26 @@
 
               </div>
             </div>
+          </div>*@
+          <div class="col">
+            <div class="card h-100">
+                <img src="@movieViewModel.BannerDataUrl" class="card-img-top h-50" alt="movie-banner">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        @movieViewModel.Name
+                        <span class="float-end">
+                            <a asp-controller="Movie" asp-action="Update" asp-route-id="@movieViewModel.Id" title="Update"><i class="bi bi-pencil-fill text-warning"></i></a>
+                            <a asp-controller="Movie" asp-action="Delete" asp-route-id="@movieViewModel.Id" title="Delete"><i class="bi bi-trash-fill text-danger"></i></a>
+                        </span>
+                    </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">@movieViewModel.GenreName (Length: @movieViewModel.LengthInMin mins)</h6>
+                    <p class="card-text">@movieViewModel.Description</p>
+                </div>
+                <div class="card-footer">
+                    <h6 class="text-muted">Released on @movieViewModel.ReleaseDate</h6>
+                </div>
+            </div>
           </div>
     }
-  </div> 
+</div> 
    
