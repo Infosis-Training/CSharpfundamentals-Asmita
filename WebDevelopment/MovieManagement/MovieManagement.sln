@@ -12,7 +12,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{8C47157C-F705-410A-9D6E-D81EA3C63A46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplicationAuth", "..\WebApplicationAuth\WebApplicationAuth.csproj", "{9361DA00-1A05-435A-A240-9477618A87DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplicationAuth", "..\WebApplicationAuth\WebApplicationAuth.csproj", "{9361DA00-1A05-435A-A240-9477618A87DF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloApi", "..\HelloApi\HelloApi.csproj", "{EA0C632A-7B28-431C-A5D9-70F1ACC3FEFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieManagement.Api", "MovieManagement.Api\MovieManagement.Api.csproj", "{F348ADFA-EF37-4D10-AE8F-99F54EA4A6C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +36,14 @@ Global
 		{9361DA00-1A05-435A-A240-9477618A87DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9361DA00-1A05-435A-A240-9477618A87DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9361DA00-1A05-435A-A240-9477618A87DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA0C632A-7B28-431C-A5D9-70F1ACC3FEFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA0C632A-7B28-431C-A5D9-70F1ACC3FEFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA0C632A-7B28-431C-A5D9-70F1ACC3FEFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA0C632A-7B28-431C-A5D9-70F1ACC3FEFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F348ADFA-EF37-4D10-AE8F-99F54EA4A6C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F348ADFA-EF37-4D10-AE8F-99F54EA4A6C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F348ADFA-EF37-4D10-AE8F-99F54EA4A6C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F348ADFA-EF37-4D10-AE8F-99F54EA4A6C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
