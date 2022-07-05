@@ -62,6 +62,8 @@ namespace MovieManagement.Api.Controllers
 
             _context.Entry(movie).State = EntityState.Modified;
 
+            //_context.Update(movie);
+
             try
             {
                 await _context.SaveChangesAsync();
