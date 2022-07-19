@@ -12,8 +12,8 @@ using MovieManagement.Api.Data;
 namespace MovieManagement.Api.Migrations
 {
     [DbContext(typeof(MovieManagementApiContext))]
-    [Migration("20220703015806_InitialDb")]
-    partial class InitialDb
+    [Migration("20220719013950_genreTable")]
+    partial class genreTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,6 +43,9 @@ namespace MovieManagement.Api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("GenreId")
+                        .HasColumnType("int");
+
                     b.Property<float>("LengthInMin")
                         .HasColumnType("real");
 
@@ -55,7 +58,42 @@ namespace MovieManagement.Api.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("GenreId");
+
                     b.ToTable("Movie");
+                });
+
+            modelBuilder.Entity("MovieManagementApi.Models.Genre", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Genre");
+                });
+
+            modelBuilder.Entity("MovieManagement.Api.Models.Movie", b =>
+                {
+                    b.HasOne("MovieManagementApi.Models.Genre", "Genre")
+                        .WithMany()
+                        .HasForeignKey("GenreId");
+
+                    b.Navigation("Genre");
                 });
 #pragma warning restore 612, 618
         }

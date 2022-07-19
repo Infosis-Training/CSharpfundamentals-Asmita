@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MovieManagementApi.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace MovieManagement.Api.Models
 {
@@ -11,5 +12,8 @@ namespace MovieManagement.Api.Models
         public DateTime ReleaseDate { get; set; }
         public float LengthInMin { get; set; }
         public byte[]? Banner { get; set; }
+        public Genre? Genre { get; set; }
+        public int? GenreId { get; set; }
+
     }
 }
